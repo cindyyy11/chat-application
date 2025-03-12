@@ -15,29 +15,6 @@ const ChatPage = ({ back, title }) => {
     const [posts, setPosts] = useState([]);
     const isSubscribed = useRef(false);
 
-    const teammembers = [
-        '/images/avatars/avatar-1.jpg',
-        '/images/avatars/avatar-2.png',
-        '/images/avatars/avatar-3.png',
-        '/images/avatars/avatar-4.png',
-    ];
-
-    const images = [
-        '/images/shared_moments-1.jpeg',
-        '/images/shared_moments-2.jpeg',
-        '/images/shared_moments-3.jpeg',
-        '/images/shared_moments-3.jpeg',
-    ];
-
-    const skills = [
-        'Interface Design',
-        'Business',
-        'User Experience',
-        'Marketing',
-        'Development',
-        'Founder',
-    ];
-
     const fetchPosts = async () => {
         const response = await fetch('http://localhost:3000/api/posts');
         const data = await response.json();
@@ -62,7 +39,7 @@ const ChatPage = ({ back, title }) => {
     useEffect(() => {
         fetchPosts();
     }, []);
-    
+
     useEffect(() => {
         //Subscribe to real time messages
         if (isSubscribed.current) return; // Prevent duplicate subscriptions
@@ -101,13 +78,6 @@ const ChatPage = ({ back, title }) => {
                             {title || 'Chat'}
                         </h1>
                         <div className='flex items-center shrink-0 ml-auto'>
-                            <button className='btn-transparent-dark btn-square btn-medium mr-2'>
-                                <Icon name='search' />
-                            </button>
-                            <button className='btn-transparent-dark btn-square btn-medium relative'>
-                                <Icon name='notification' />
-                                <div className='absolute top-1.5 right-[0.5625rem] w-2 h-2 border border-white rounded-full bg-green-1'></div>
-                            </button>
                             <button className='relative hidden w-8 h-8 ml-1 md:block'>
                                 <Image
                                     className='rounded-full object-cover'
@@ -173,120 +143,6 @@ const ChatPage = ({ back, title }) => {
                             posts={posts}
                             submitFunc={submitPost}
                         />
-                    </div>
-                </div>
-            </div>
-
-            {/* SIDEBAR */}
-            <div className='shrink-0 w-[25%] min-w-[22rem] lg:w-full'>
-                {/* TEAM MEMBERS */}
-                <div className='mb-8'>
-                    <div className='mb-5'>
-                        <div className='mb-3 text-h6'>Team members</div>
-                        <div className='flex items-center'>
-                            {teammembers.map((member, index) => (
-                                <div className='relative w-9 h-9' key={index}>
-                                    <Image
-                                        className='object-cover rounded-full'
-                                        src={member}
-                                        fill
-                                        alt='Avatar'
-                                    />
-                                </div>
-                            ))}
-                            <button className='btn-transparent-dark btn-square btn-small'>
-                                <Icon name='add-circle' />
-                            </button>
-                        </div>
-                    </div>
-
-                    {/* SHARED MOMENTS */}
-                    <div className='mb-8'>
-                        <div className='mb-3 text-h6'>Shared Moments</div>
-                        <div className='flex flex-wrap -mt-2 mx-1'>
-                            {images.map((image, index) => (
-                                <div
-                                    className='w-[calc(50%-0.5rem)] mt-2 border border-n-1'
-                                    key={index}
-                                >
-                                    <Image
-                                        className='object-cover w-full h-full'
-                                        src={image}
-                                        width={500}
-                                        height={500}
-                                        alt='Avatar'
-                                    />
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-
-                    <div className='mb-8'>
-                        <div className='mb-3 text-h6'>Latest media</div>
-                        <div className='flex flex-wrap -mt-2 mx-1'>
-                            {images.map((image, index) => (
-                                <div
-                                    className='w-[calc(50%-0.5rem)] mt-2 border border-n-1'
-                                    key={index}
-                                >
-                                    <Image
-                                        className='object-cover'
-                                        src={image}
-                                        width={500}
-                                        height={500}
-                                        alt='Avatar'
-                                    />
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-
-                    <div className='mb-8'>
-                        <div className='mb-3 text-h6'>File Library</div>
-                        <div className='flex flex-wrap -mt-2 mx-1'>
-                            {images.map((image, index) => (
-                                <div
-                                    className='w-[calc(50%-0.5rem)] mt-2 border border-n-1'
-                                    key={index}
-                                >
-                                    <Image
-                                        className='object-cover'
-                                        src={image}
-                                        width={500}
-                                        height={500}
-                                        alt='Avatar'
-                                    />
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* SKILLS & BADGES */}
-                    <div>
-                        <div className='mb-3 text-h6'>Skills & Expertise</div>
-                        <div className='flex flex-wrap -mt-1.5'>
-                            {skills.map((skill, index) => (
-                                <div
-                                    className='label-stroke mt-1.5'
-                                    key={index}
-                                >
-                                    {skill}
-                                </div>
-                            ))}
-                        </div>
-                        <div className='mb-3 text-h6 mt-8'>
-                            Achievements & Badges
-                        </div>
-                        <div className='flex flex-wrap -mt-1.5'>
-                            {skills.map((skill, index) => (
-                                <div
-                                    className='label-stroke mt-1.5'
-                                    key={index}
-                                >
-                                    {skill}
-                                </div>
-                            ))}
-                        </div>
                     </div>
                 </div>
             </div>
