@@ -1,7 +1,7 @@
 import Icon from '@/components/Icon';
 import Comment from '@/components/Comment';
 import Replies from '@/components/Replies';
-import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { pb } from '@/app/lib/pocketbase';
 import { useUserStore } from '@/store/store';
 
@@ -179,11 +179,6 @@ const Review = ({ comments, likes, messageId, children }) => {
                             className={liked ? '!fill-purple-1' : ''}
                         />
                         <span>{currentLikes}</span>
-                    </button>
-
-                    <button className='btn-transparent-dark btn-small ml-5 px-0'>
-                        <Icon name='sun' />
-                        <span>{comments}</span>
                     </button>
 
                     <button
